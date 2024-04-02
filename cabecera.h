@@ -10,9 +10,9 @@ typedef struct{
 typedef struct{
     char *DNI;
     char *nombre;
-    char apellido;
-    int telefono;
-    int num_tarjeta;
+    char *apellido;
+    char *telefono;
+    char *num_tarjeta;
     Fecha fecha_nac;
 } Cliente;
 
@@ -28,7 +28,7 @@ typedef struct{
     int precio_habitacion;
     char *nombre;
     char *descripcion;
-} Tipo_jabitacion;
+} Tipo_habitacion;
 
 typedef struct{
     int id_habitacion;
