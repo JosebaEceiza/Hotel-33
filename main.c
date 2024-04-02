@@ -31,18 +31,24 @@ void main(){
     else if (ve == '2'){
 
         //REGISTRAR USUARIO
-        printf("Introduzca su nombre: ");
-        char nombre = getchar();
-
-        printf("Introduzca su apellido: ");
-        char apellido = getchar();
+        char str1[15];
+        char str2[15];
+        char str3[15];
+        char str4[15];
 
         printf("Introduzca su DNI: ");
-        char DNI = getchar();
+        scanf("%s", str1);        
 
-        printf("Introduzca su contraseña: ");
-        char contrasena = getchar();
+        printf("Introduzca su nombre: ");
+        scanf("%s", str2); 
 
+        printf("Introduzca su apellido: ");
+        scanf("%s",str3);
+
+        printf("Introduzca su contrasena: ");
+        scanf("%s",str4);
+    
+    
 
     }
 

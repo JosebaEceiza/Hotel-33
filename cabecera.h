@@ -17,10 +17,17 @@ typedef struct{
 } Cliente;
 
 typedef struct{
+    char *DNI;
+    char *nombre;
+    char *apellido;
+    char *contrasena;
+} Usuario;
+
+
+typedef struct{
     int id_tipo_comida;
     int precio_comida;
     char *nombre;
-    char *descripcion;
 } Tipo_comida;
 
 typedef struct{
