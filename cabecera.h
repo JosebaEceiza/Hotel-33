@@ -54,10 +54,12 @@ void crearBD();
 
 int realizarReserva();
 
-int registrarUsuario();
+int registrarUsuario(Usuario *u);
 
 int loggear(Usuario *usuario);
 
 void anularReserva();
+
+int calcularOcupacion();
 
 #endif

@@ -8,21 +8,24 @@
 void main(){
     crearBD();
 
-    char ve = '9';
+    char ve;
     while (ve != '3'){
 
         printf("BIENVENIDO A HOTEL 33");
         printf("\n1. Iniciar Sesion");
         printf("\n2. Registrar Usuario");
         printf("\n3. Salir del programa\n");
+        printf("Introduzca la opcion deseada:");
         ve = getchar();
 
         if (ve == '1'){
-            char ve1 = '9';
+            char ve1;
             while (ve1 != '6'){
+                printf("\n INICIO SESION\n");
                 char str1[15];
                 char str2[15];
                 Usuario *usuario;
+
                 printf("Introduzca su DNI: ");
                 scanf("%s", str1);  
                 fflush(stdin); 
@@ -33,11 +36,10 @@ void main(){
                 fflush(stdin); 
 
 
-
                 (*usuario).DNI = str1;
                 (*usuario).contrasena = str2;
 
-                loggear(usuario);    
+                loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
 
                 //INICIAR SESION
                 printf("\n1. Realizar reserva");
@@ -71,6 +73,8 @@ void main(){
         else if (ve == '2'){
 
             //REGISTRAR USUARIO
+            printf("\nREGISTRO USUARIO\n");
+           
             char str1[15];
             char str2[15];
             char str3[15];
@@ -78,19 +82,23 @@ void main(){
 
             printf("Introduzca su DNI: ");
             scanf("%s", str1);        
+            fflush(stdin); 
 
             printf("Introduzca su nombre: ");
-            scanf("%s", str2); 
+            scanf("%s", str2);
+            fflush(stdin);  
 
             printf("Introduzca su apellido: ");
             scanf("%s",str3);
+            fflush(stdin); 
 
             printf("Introduzca su contrasena: ");
             scanf("%s",str4);
+            fflush(stdin); 
 
 
         Usuario *u1;
-        u1 = malloc(sizeof(Usuario));
+        u1 = (Usuario*) malloc(sizeof(Usuario));
         (*u1).DNI = str1;
         (*u1).nombre = str2;
         (*u1).apellido = str3;
@@ -99,7 +107,6 @@ void main(){
         registrarUsuario(u1);
         free(u1);
         u1 = NULL;
-
         }
 
         else if (ve == '3'){
