@@ -17,6 +17,8 @@ void main(){
         printf("\n3. Salir del programa\n");
         printf("Introduzca la opcion deseada:");
         ve = getchar();
+        fflush(stdin);
+        excepcionNumeros(&ve);
 
         if (ve == '1'){
             char ve1;

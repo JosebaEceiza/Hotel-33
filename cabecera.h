@@ -62,4 +62,7 @@ void anularReserva();
 
 int calcularOcupacion();
 
+void excepcionNumeros(char *ve);
+
+
 #endif
