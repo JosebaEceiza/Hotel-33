@@ -21,6 +21,8 @@ void main(){
         if (ve == '1'){
             char ve1;
             while (ve1 != '6'){
+                //INICIAR SESION
+
                 printf("\n INICIO SESION\n");
                 char str1[15];
                 char str2[15];
@@ -39,9 +41,8 @@ void main(){
                 (*usuario).DNI = str1;
                 (*usuario).contrasena = str2;
 
-                loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
-
-                //INICIAR SESION
+                int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
+                if (acceso == 0){
                 printf("\n1. Realizar reserva");
                 printf("\n2. Anular reserva");
                 printf("\n3. Historial de reservas por cliente (DNI)");
@@ -68,7 +69,7 @@ void main(){
                 ve1 = getchar();
                 fflush(stdin); 
 
-                }
+                }}
             }
         else if (ve == '2'){
 

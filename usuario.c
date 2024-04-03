@@ -55,38 +55,51 @@ int loggear(Usuario *usuario){
     if (result != SQLITE_OK) {
 		printf("Error preparing statement (SELECT)\n");
 		printf("%s\n", sqlite3_errmsg(db));
-		return result;
+		return 1;
 	}
 
 	printf("SQL query prepared (SELECT)\n");
 
-    sqlite3_bind_text(stmt, 1, (*usuario).DNI, -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, (*usuario).contrasena, -1, SQLITE_STATIC);
-    
-    result = sqlite3_step(stmt);
-
-    printf("\n%s",result);
-    printf("\n%i\n",SQLITE_ROW);
-
-    int count = sqlite3_column_int(stmt, 0);
-    const char *count1 = sqlite3_column_text(stmt, 1);
-
-    const char *count2 = sqlite3_column_text(stmt, 2);
-
-    const char *count3 = sqlite3_column_text(stmt, 3);
-
-    const char *count4 = sqlite3_column_text(stmt, 4);
-
-    printf("%s",count1);
-    printf("%s",count2);
-
-    printf("%s",count3);
-    printf("%s",count4);
 
 
+
+    sqlite3_bind_text(stmt, 1, (*usuario).contrasena, -1,  SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, (*usuario).DNI, -1, SQLITE_STATIC);
+
+
+    const char *count3 = NULL;
+    const char *count4 = NULL;
+    int numFilas = 0;
+    int singleRow = 0;
+    int acceder = 0;
+    while ((result = sqlite3_step(stmt)) == SQLITE_ROW) {
+        
+
+        numFilas++;
+        if (numFilas > 1) {
+            singleRow = -1; // Indicador de múltiples filas
+            return 1;
+        }
+        count3 = (char *)sqlite3_column_text(stmt, 3);
+        count4 = (char *)sqlite3_column_text(stmt, 4);
+        
+        if (strcmp((*usuario).contrasena, count4) == 0 || strcmp((*usuario).DNI, count3) == 0) {
+        acceder = 1;        
+        }
+    }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 
-    return result;
+    if(singleRow == 0 && acceder == 1){
+        printf("Se ha accedido con exito");
+        return 0;
+
+    }
+    else{
+        return 1;
+    }
+
+    
+
 }
