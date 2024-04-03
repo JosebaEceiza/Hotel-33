@@ -24,15 +24,16 @@ void main(){
                 //INICIAR SESION
 
                 printf("\n INICIO SESION\n");
-                char str1[15];
-                char str2[15];
-                Usuario *usuario;
+                char *str1 = malloc(15*sizeof(char));
+                char *str2 = malloc(15*sizeof(char));
+                Usuario *usuario = malloc(sizeof(Usuario));
+
 
                 printf("Introduzca su DNI: ");
                 scanf("%s", str1);  
                 fflush(stdin); 
- 
 
+    
                 printf("Introduzca su contrasena: ");
                 scanf("%s",str2);
                 fflush(stdin); 
@@ -40,37 +41,48 @@ void main(){
 
                 (*usuario).DNI = str1;
                 (*usuario).contrasena = str2;
+                
+                free(str1);
+                free(str2);
 
                 int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
                 if (acceso == 0){
-                printf("\n1. Realizar reserva");
-                printf("\n2. Anular reserva");
-                printf("\n3. Historial de reservas por cliente (DNI)");
-                printf("\n4. Consultar datos habitaciones");
-                printf("\n5. Consultar datos usuario");
-                printf("\n6. Cerrar sesion\n");
-                
-                if (ve1 == '1'){
-                    realizarReserva();
+                    printf("\n1. Realizar reserva");
+                    printf("\n2. Anular reserva");
+                    printf("\n3. Historial de reservas por cliente (DNI)");
+                    printf("\n4. Consultar datos habitaciones");
+                    printf("\n5. Consultar datos usuario");
+                    printf("\n6. Cerrar sesion\n");
+                    
+                    if (ve1 == '1'){
+                        realizarReserva();
                     }
-                if (ve1 == '2'){
-                    anularReserva();
+                    if (ve1 == '2'){
+                        anularReserva();
                     }
-                if (ve1 == '3'){
+                    if (ve1 == '3'){
                     }
-                if (ve1 == '4'){
+                    if (ve1 == '4'){
                     }
-                if (ve1 == '5'){
+                    if (ve1 == '5'){
                     }
-                if (ve1 =='6'){
-                    break;
+                    if (ve1 =='6'){
+                        free(usuario);
+                        break;
                     }
 
-                ve1 = getchar();
-                fflush(stdin); 
+                    ve1 = getchar();
+                    fflush(stdin); 
 
-                }}
+                }
+                else{
+                    printf("\nDatos incorrectos");
+                    printf("\nSi quieres salir pulsa 6, sino, pulsa otro boton: ")  ;
+                    ve1 = getchar();
+                    
+                }
             }
+        }
         else if (ve == '2'){
 
             //REGISTRAR USUARIO

@@ -61,12 +61,12 @@ int loggear(Usuario *usuario){
 	printf("SQL query prepared (SELECT)\n");
 
 
-
-
     sqlite3_bind_text(stmt, 1, (*usuario).contrasena, -1,  SQLITE_STATIC);
     sqlite3_bind_text(stmt, 2, (*usuario).DNI, -1, SQLITE_STATIC);
 
-
+    const char *count0 = NULL;
+    const char *count1 = NULL;
+    const char *count2 = NULL;
     const char *count3 = NULL;
     const char *count4 = NULL;
     int numFilas = 0;
@@ -80,11 +80,18 @@ int loggear(Usuario *usuario){
             singleRow = -1; // Indicador de múltiples filas
             return 1;
         }
+
+        count0 = (char *)sqlite3_column_int(stmt, 0);
+        count1 = (char *)sqlite3_column_text(stmt, 1);
+        count2 = (char *)sqlite3_column_text(stmt, 2);
         count3 = (char *)sqlite3_column_text(stmt, 3);
         count4 = (char *)sqlite3_column_text(stmt, 4);
         
         if (strcmp((*usuario).contrasena, count4) == 0 || strcmp((*usuario).DNI, count3) == 0) {
-        acceder = 1;        
+            acceder = 1;
+            (*usuario).nombre = (char*)count1;
+            (*usuario).apellido = (char*)count2;        
+        
         }
     }
 
