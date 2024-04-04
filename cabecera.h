@@ -64,5 +64,6 @@ int calcularOcupacion();
 
 void excepcionNumeros(char *ve);
 
+void excepcionDNI(char *str);
 
 #endif

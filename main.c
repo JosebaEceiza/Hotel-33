@@ -98,6 +98,7 @@ void main(){
             printf("Introduzca su DNI: ");
             scanf("%s", str1);        
             fflush(stdin); 
+            excepcionDNI(str1);
 
             printf("Introduzca su nombre: ");
             scanf("%s", str2);
