@@ -9,8 +9,8 @@ void crearBD(){
                 "DNI varchar primary key not null,"
                 "NOMBRE varchar not null,"
                 "APELLIDO varchar not null,"
-                "TELEFONO integer not null,"
-                "NUM_TARJETA integer not null,"
+                "TELEFONO varchar not null,"
+                "NUM_TARJETA varchar not null,"
                 "FECHA_NAC date not null);";
     int x0 = sqlite3_exec(db,sql0,0,0,0);
 
@@ -57,10 +57,9 @@ void crearBD(){
     int x6 = sqlite3_exec(db,sql6,0,0,0);
 
     char *sql7 = "Create table if not exists USUARIO ("
-                "ID_USUARIO integer primary key not null,"
+                "DNI varchar primary key not null,"
                 "nombre varchar not null,"
                 "apellido varchar not null,"
-                "DNI varchar not null,"
                 "contrasena varchar not null);";
     int x7 = sqlite3_exec(db,sql7,0,0,0);
 

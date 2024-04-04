@@ -52,11 +52,14 @@ typedef struct{
 
 void crearBD();
 
+int registrarCliente(Cliente *cliente);
+
 int realizarReserva();
 
 int registrarUsuario(Usuario *u);
 
 int loggear(Usuario *usuario);
+
 
 void anularReserva();
 
