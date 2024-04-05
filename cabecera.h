@@ -8,11 +8,11 @@ typedef struct{
 } Fecha;
 
 typedef struct{
-    char *DNI;
-    char *nombre;
-    char *apellido;
-    char *telefono;
-    char *num_tarjeta;
+    char DNI[10];
+    char nombre[15];
+    char apellido[15];
+    char telefono[10];
+    char num_tarjeta[20];
     Fecha fecha_nac;
 } Cliente;
 

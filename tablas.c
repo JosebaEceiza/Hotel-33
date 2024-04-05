@@ -20,7 +20,7 @@ void crearBD(){
                 "FECHA_INI DATE,"
                 "FECHA_FIN DATE,"
                 "DNI VARCHAR,"
-                "ID_HABITACION);";
+                "ID_HABITACION INTEGER);";
     int x1 = sqlite3_exec(db,sql1,0,0,0);
 
 

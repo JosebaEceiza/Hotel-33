@@ -8,23 +8,6 @@ int registrarUsuario(Usuario *u){
     sqlite3* db;
     sqlite3_open("base_datos.db", &db);
 
-
-    //CALCULAR ID_USUARIO
-    sqlite3_stmt *stmt1;
-    char *sql0 = "SELECT COUNT(*) FROM USUARIO;";
-    
-    int resultado = sqlite3_prepare_v2(db, sql0, -1, &stmt1, NULL);
-    if (resultado != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
-	}
-
-    resultado = sqlite3_step(stmt1);
-    int count = sqlite3_column_int(stmt1, 0);
-
-    sqlite3_finalize(stmt1);
-    //FIN CALCULAR ID_USUARIO
-
     //INSERT USUARIO
     sqlite3_stmt *stmt;
 
@@ -73,12 +56,11 @@ int loggear(Usuario *usuario){
 		return 1;
 	}
 
-	printf("SQL query prepared (SELECT)\n");
+	printf("SQL query prepared (SELECT)\n"); // para el logger
 
     sqlite3_bind_text(stmt, 1, (*usuario).contrasena, -1,  SQLITE_STATIC);
     sqlite3_bind_text(stmt, 2, (*usuario).DNI, -1, SQLITE_STATIC);
 
-    const char *count0 = NULL;
     const char *count1 = NULL;
     const char *count2 = NULL;
     const char *count3 = NULL;
@@ -99,7 +81,7 @@ int loggear(Usuario *usuario){
         count3 = (char *)sqlite3_column_text(stmt, 2);
         count4 = (char *)sqlite3_column_text(stmt, 3);
         
-        if (strcmp((*usuario).contrasena, count4) == 0 || strcmp((*usuario).DNI, count3) == 0) {
+        if (strcmp((*usuario).contrasena, count4) == 0 && strcmp((*usuario).DNI, count1) == 0) {
             acceder = 1;
             (*usuario).nombre = (char*)count1;
             (*usuario).apellido = (char*)count2;        

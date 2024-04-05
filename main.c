@@ -10,24 +10,24 @@ void main(){
 
     char ve;
     while (ve != '3'){
+        fflush(stdin);
 
         printf("BIENVENIDO A HOTEL 33");
         printf("\n1. Iniciar Sesion");
         printf("\n2. Registrar Usuario");
         printf("\n3. Salir del programa\n");
-        printf("Introduzca la opcion deseada:");
+        printf("Introduzca la opcion deseada: ");
         ve = getchar();
         fflush(stdin);
         excepcionNumeros(&ve);
 
         if (ve == '1'){
-            char ve1;
-            while (ve1 != '6'){
+            while (ve != '6'){
                 //INICIAR SESION
 
                 printf("\n INICIO SESION\n");
-                char *str1 = malloc(15*sizeof(char));
-                char *str2 = malloc(15*sizeof(char));
+                char str1[15];
+                char str2[15];
                 Usuario *usuario = malloc(sizeof(Usuario));
 
 
@@ -44,49 +44,95 @@ void main(){
                 (*usuario).DNI = str1;
                 (*usuario).contrasena = str2;
                 
-                free(str1);
-                free(str2);
+                
 
                 int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
+                
                 if (acceso == 0){
-                    printf("\n1. Realizar reserva");
-                    printf("\n2. Anular reserva");
-                    printf("\n3. Historial de reservas por cliente (DNI)");
-                    printf("\n4. Consultar datos habitaciones");
-                    printf("\n5. Consultar datos usuario");
-                    printf("\n6. Cerrar sesion\n");
-                    
-                    if (ve1 == '1'){
-                        realizarReserva();
-                    }
-                    if (ve1 == '2'){
-                        anularReserva();
-                    }
-                    if (ve1 == '3'){
-                    }
-                    if (ve1 == '4'){
-                    }
-                    if (ve1 == '5'){
-                    }
-                    if (ve1 =='6'){
-                        free(usuario);
-                        break;
-                    }
+                    while (acceso == 0){
+                        printf("\n1. Realizar reserva");
+                        printf("\n2. Anular reserva");
+                        printf("\n3. Historial de reservas por cliente (DNI)");
+                        printf("\n4. Consultar datos habitaciones");
+                        printf("\n5. Consultar datos usuario");
+                        printf("\n6. Cerrar sesion");
+                        printf("\nIntroduzca la opcion deseada:");
 
-                    ve1 = getchar();
-                    fflush(stdin); 
+                        ve = getchar();
+                        fflush(stdin); 
 
+                        if (ve == '1'){
+                            Reserva *r = malloc(sizeof(Reserva));
+                            printf("¿Tiene registrado sus datos? (Si es asi pulsa S): ");
+                            char registro = getchar();
+                            fflush(stdin); 
+
+                            if ((registro == 'S') || (registro =='s')){
+
+                                printf("\nIndique su DNI: ");
+                                scanf("%s", (*r).DNI);  
+                                (*r).fecha_ini;
+                                (*r).fecha_fin;
+                            }
+                            else{
+                                Cliente *c = malloc(sizeof(Cliente));
+                                if (c == NULL) {
+                                    printf("Error: No se pudo asignar memoria para el cliente.\n");
+                                    exit(1);
+                                    }
+
+                                printf("\nIndique su DNI: ");
+                                scanf("%s", (*c).DNI);  
+                                printf("\nIndique su nombre: ");
+                                scanf("%s", (*c).nombre);  
+                                printf("\nIndique su apellido: ");
+                                scanf("%s", (*c).apellido);  
+                                printf("\nIndique su telefono: ");
+                                scanf("%s", (*c).telefono);  
+                                printf("\nIndique su numero de tarjeta: ");
+                                scanf("%s", (*c).num_tarjeta);  
+                                printf("\nIndique su anyo de nacimiento: ");
+                                scanf("%i", &(*c).fecha_nac.anyo);  
+                                printf("\nIndique su mes de nacimiento: ");
+                                scanf("%i", &(*c).fecha_nac.mes);  
+                                printf("\nIndique su dia de nacimiento: ");
+                                scanf("%i", &(*c).fecha_nac.dia);  
+                                fflush(stdin); 
+
+
+                                Fecha fec = (*c).fecha_nac;
+                                
+
+
+
+                                registrarCliente(c);
+
+                            }
+                            realizarReserva();
+                        }
+                        else if (ve == '2'){
+                            anularReserva();
+                        }
+                        else if (ve == '3'){
+                        }
+                        else if (ve == '4'){
+                        }
+                        else if (ve == '5'){
+                        }
+                        else if (ve =='6'){
+                            free(usuario);
+                            acceso = 1;
+                        }
+                    }
                 }
                 else{
                     printf("\nDatos incorrectos");
                     printf("\nSi quieres salir pulsa 6, sino, pulsa otro boton: ")  ;
-                    ve1 = getchar();
-                    
+                    ve = getchar();
                 }
             }
         }
         else if (ve == '2'){
-
             //REGISTRAR USUARIO
             printf("\nREGISTRO USUARIO\n");
            
@@ -126,7 +172,6 @@ void main(){
         free(u1);
         u1 = NULL;
         }
-
         else if (ve == '3'){
 
             //SALIR DEL PROGRAMA

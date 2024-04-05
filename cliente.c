@@ -19,8 +19,6 @@ int registrarCliente(Cliente *cliente){
 		printf("%s\n", sqlite3_errmsg(db));
 	}
 
-    printf("llega1");
-
     char *nombre = (*cliente).nombre;
     char *apellido = (*cliente).apellido;
     char *DNI = (*cliente).DNI;
@@ -30,33 +28,15 @@ int registrarCliente(Cliente *cliente){
     int mes = (*cliente).fecha_nac.mes;
     int dia = (*cliente).fecha_nac.dia;
     char *fechaFormateada = malloc(11);
-    printf("llega12");
 
-    printf("%s", nombre);
-    printf("%s", apellido);
-    printf("%s", DNI);
-    printf("%d", telefono);
-    printf("%d", num_tarjeta);
     sprintf(fechaFormateada, "%d-%02d-%02d", anyo, mes, dia);
-
-    printf("%s", nombre);
-    printf("%s", apellido);
-    printf("%s", DNI);
-    printf("%d", telefono);
-    printf("%d", num_tarjeta);
-
-
-
-    printf("llega2");
     
     sqlite3_bind_text(stmt, 1, DNI, strlen(DNI), SQLITE_STATIC);
     sqlite3_bind_text(stmt, 2, nombre, strlen(nombre), SQLITE_STATIC);
     sqlite3_bind_text(stmt, 3, apellido, strlen(apellido), SQLITE_STATIC);
     sqlite3_bind_text(stmt, 4, telefono, strlen(telefono), SQLITE_STATIC);
     sqlite3_bind_text(stmt, 5, num_tarjeta, strlen(num_tarjeta), SQLITE_STATIC);
-    printf("leggagaga");
     sqlite3_bind_text(stmt, 6, fechaFormateada, -1, SQLITE_STATIC);
-    printf("llega3");
 
 
     result = sqlite3_step(stmt);
@@ -64,7 +44,6 @@ int registrarCliente(Cliente *cliente){
         fprintf(stderr, "Error al ejecutar el statement: %s\n", sqlite3_errmsg(db));
         return result;
     }
-    printf("llega4");
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
