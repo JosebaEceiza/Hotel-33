@@ -45,3 +45,79 @@ void excepcionDNI(char *str) {
 }
 
 
+void excepcionNombre(char *str){
+    int valido = 0;
+    while(valido != 1){
+        str[0] = toupper(str[0]);
+        int existeNumero = 0;
+        int i;
+
+        for(i = 1; i < strlen(str); i++){
+            str[i] = tolower(str[i]);
+
+            if(isdigit(str[i])){
+                existeNumero = 1;
+                }
+            }
+        
+
+        if(existeNumero == 0){
+            if(strlen(str) < 2 || strlen(str) > 15){
+                printf("El nombre debe contener entre 2 y 15 caracteres. Intentelo de nuevo:");
+                scanf("%s", str);
+                fflush(stdin);  
+            }
+
+            else{
+                valido = 1;
+            }
+        }
+
+        else{
+            printf("El nombre  no debe contener numeros. Intentelo de nuevo:");
+            scanf("%s", str);
+            fflush(stdin);
+        }
+    } 
+}
+
+
+
+
+
+
+void excepcionApellido(char *str){
+    int valido = 0;
+    while(valido != 1){
+        str[0] = toupper(str[0]);
+        int existeNumero = 0;
+        int i;
+
+        for(i = 1; i < strlen(str); i++){
+            str[i] = tolower(str[i]);
+
+            if(isdigit(str[i])){
+                existeNumero = 1;
+                }
+            }
+        
+
+        if(existeNumero == 0){
+            if(strlen(str) < 2 || strlen(str) > 15){
+                printf("El apellido debe contener entre 2 y 15 caracteres. Intentelo de nuevo:");
+                scanf("%s", str);
+                fflush(stdin);  
+            }
+
+            else{
+                valido = 1;
+            }
+        }
+
+        else{
+            printf("El apellido  no debe contener numeros. Intentelo de nuevo:");
+            scanf("%s", str);
+            fflush(stdin);
+        }
+    } 
+}

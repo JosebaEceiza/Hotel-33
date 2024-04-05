@@ -8,7 +8,7 @@
 void main(){
     crearBD();
 
-    char ve; // valor entrada
+    char ve;
     while (ve != '3'){
 
         printf("BIENVENIDO A HOTEL 33");
@@ -21,12 +21,13 @@ void main(){
         excepcionNumeros(&ve);
 
         if (ve == '1'){
-            while (ve != '6'){
+            char ve1;
+            while (ve1 != '6'){
                 //INICIAR SESION
 
                 printf("\n INICIO SESION\n");
-                char str1[15];
-                char str2[15];
+                char *str1 = malloc(15*sizeof(char));
+                char *str2 = malloc(15*sizeof(char));
                 Usuario *usuario = malloc(sizeof(Usuario));
 
 
@@ -43,6 +44,8 @@ void main(){
                 (*usuario).DNI = str1;
                 (*usuario).contrasena = str2;
                 
+                free(str1);
+                free(str2);
 
                 int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
                 if (acceso == 0){
@@ -53,68 +56,31 @@ void main(){
                     printf("\n5. Consultar datos usuario");
                     printf("\n6. Cerrar sesion\n");
                     
-                    ve = getchar();
-                    fflush(stdin); 
-
-                    if (ve == '1'){
-                        Reserva *r = malloc(sizeof(Reserva));
-                        printf("¿Tiene registrado sus datos? (Si es asi pulsa S): ");
-                        char registro = getchar();
-                        fflush(stdin); 
-
-                        if ((registro == 'S') || (registro =='s')){
-                            
-                            printf("\nIndique su DNI: ");
-                            scanf("%s", (*r).DNI);  
-                            (*r).fecha_ini;
-                            (*r).fecha_fin;
-                        }
-                        else{
-                            Cliente *c = malloc(sizeof(Cliente));
-                            
-                            printf("\nIndique su DNI: ");
-                            scanf("%s", &(*c).DNI);  
-                            printf("\nIndique su nombre: ");
-                            scanf("%s", &(*c).nombre);  
-                            printf("\nIndique su apellido: ");
-                            scanf("%s", &(*c).apellido);  
-                            printf("\nIndique su telefono: ");
-                            scanf("%i", &(*c).telefono);  
-                            printf("\nIndique su numero de tarjeta: ");
-                            scanf("%i", &(*c).num_tarjeta);  
-                            printf("\nIndique su anyo de nacimiento: ");
-                            scanf("%i", &(*c).fecha_nac.anyo);  
-                            printf("\nIndique su mes de nacimiento: ");
-                            scanf("%i", &(*c).fecha_nac.mes);  
-                            printf("\nIndique su dia de nacimiento: ");
-                            scanf("%i", &(*c).fecha_nac.dia);  
-
-                            registrarCliente(c);
-
-                        }
+                    if (ve1 == '1'){
                         realizarReserva();
                     }
-                    if (ve == '2'){
+                    if (ve1 == '2'){
                         anularReserva();
                     }
-                    if (ve == '3'){
+                    if (ve1 == '3'){
                     }
-                    if (ve == '4'){
+                    if (ve1 == '4'){
                     }
-                    if (ve == '5'){
+                    if (ve1 == '5'){
                     }
-                    if (ve =='6'){
+                    if (ve1 =='6'){
                         free(usuario);
                         break;
                     }
 
-                    
+                    ve1 = getchar();
+                    fflush(stdin); 
 
                 }
                 else{
                     printf("\nDatos incorrectos");
                     printf("\nSi quieres salir pulsa 6, sino, pulsa otro boton: ")  ;
-                    ve = getchar();
+                    ve1 = getchar();
                     
                 }
             }
@@ -136,11 +102,13 @@ void main(){
 
             printf("Introduzca su nombre: ");
             scanf("%s", str2);
-            fflush(stdin);  
+            fflush(stdin);
+            excepcionNombre(str2);
 
             printf("Introduzca su apellido: ");
             scanf("%s",str3);
             fflush(stdin); 
+            excepcionApellido(str3);
 
             printf("Introduzca su contrasena: ");
             scanf("%s",str4);

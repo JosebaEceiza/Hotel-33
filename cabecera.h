@@ -69,4 +69,9 @@ void excepcionNumeros(char *ve);
 
 void excepcionDNI(char *str);
 
+void excepcionNombre(char *str);
+
+void excepcionApellido(char *str);
+
+
 #endif
