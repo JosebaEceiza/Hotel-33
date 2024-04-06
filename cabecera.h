@@ -73,5 +73,7 @@ void excepcionNombre(char *str);
 
 void excepcionApellido(char *str);
 
+void excepcionContrasena(char *str);
+
 
 #endif

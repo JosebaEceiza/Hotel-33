@@ -159,6 +159,7 @@ void main(){
             printf("Introduzca su contrasena: ");
             scanf("%s",str4);
             fflush(stdin); 
+            excepcionContrasena(str4);
 
 
         Usuario *u1;

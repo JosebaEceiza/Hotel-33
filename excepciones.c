@@ -121,3 +121,21 @@ void excepcionApellido(char *str){
         }
     } 
 }
+
+
+
+void excepcionContrasena(char *str){
+    int valido = 0;
+    while (valido != 1){
+          if(strlen(str) >= 4 && strlen(str) <= 15){
+            valido = 1;
+            }
+            else{
+                printf("La contrasena debe contener entre 4 y 15 caracteres. Intentelo de nuevo:");
+                scanf("%s", str);
+                fflush(stdin);  
+            }
+
+}
+
+}
