@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 #include"cabecera.h"
 #include"sqlite3.h"
 
@@ -32,8 +33,9 @@ void main(){
 
 
                 printf("Introduzca su DNI: ");
-                scanf("%s", str1);  
+                scanf("%s", str1);
                 fflush(stdin); 
+                str1[8] = toupper(str1[8]);
 
     
                 printf("Introduzca su contrasena: ");
@@ -46,7 +48,7 @@ void main(){
                 
                 
 
-                int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false) no?
+                int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false)
                 
                 if (acceso == 0){
                     while (acceso == 0){
@@ -83,10 +85,16 @@ void main(){
 
                                 printf("\nIndique su DNI: ");
                                 scanf("%s", (*c).DNI);  
+                                excepcionDNI((*c).DNI);
+
                                 printf("\nIndique su nombre: ");
                                 scanf("%s", (*c).nombre);  
+                                excepcionNombre((*c).nombre);
+                            
                                 printf("\nIndique su apellido: ");
                                 scanf("%s", (*c).apellido);  
+                                excepcionApellido((*c).apellido);
+
                                 printf("\nIndique su telefono: ");
                                 scanf("%s", (*c).telefono);  
                                 printf("\nIndique su numero de tarjeta: ");

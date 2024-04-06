@@ -28,6 +28,7 @@ void excepcionDNI(char *str) {
             }
 
             if(isalpha(str[8]) && numerosCorrectos == 8) {
+                str[8] = toupper(str[8]);
                 valido = 1;
 
             } else{
