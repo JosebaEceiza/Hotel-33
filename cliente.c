@@ -50,3 +50,48 @@ int registrarCliente(Cliente *cliente){
     return 0;
 
 }
+
+
+int comprobarCliente(char *c){
+
+    sqlite3* db;
+    sqlite3_open("base_datos.db", &db);
+
+    //INSERT USUARIO
+    sqlite3_stmt *stmt;
+
+    char *sql = "SELECT DNI FROM CLIENTE WHERE DNI LIKE ?;";
+
+    int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    if (result != SQLITE_OK) {
+		printf("Error preparing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return 1;
+	}
+
+    
+    char *DNI = c;
+
+    sqlite3_bind_text(stmt, 1, DNI, strlen(DNI), SQLITE_STATIC);
+    
+    result = sqlite3_step(stmt);
+    if (result != SQLITE_DONE) {
+        fprintf(stderr, "Error al ejecutar el statement: %s\n", sqlite3_errmsg(db));
+        return 1;
+    }
+    const char *count1 = NULL;
+
+    count1 = (char *)sqlite3_column_text(stmt, 0);
+    if (strcmp(count1, c) != 0){
+        printf("Este cliente no esta registrado");
+        return 1;
+    }else{
+        printf("Existe cliente");
+    }
+    
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return 0;
+
+}

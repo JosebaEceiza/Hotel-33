@@ -59,6 +59,7 @@ int loggear(Usuario *usuario){
 	printf("SQL query prepared (SELECT)\n"); // para el logger
 
     sqlite3_bind_text(stmt, 1, (*usuario).contrasena, -1,  SQLITE_STATIC);
+
     sqlite3_bind_text(stmt, 2, (*usuario).DNI, -1, SQLITE_STATIC);
 
     const char *count1 = NULL;
@@ -83,8 +84,8 @@ int loggear(Usuario *usuario){
         
         if (strcmp((*usuario).contrasena, count4) == 0 && strcmp((*usuario).DNI, count1) == 0) {
             acceder = 1;
-            (*usuario).nombre = (char*)count1;
-            (*usuario).apellido = (char*)count2;        
+            strcpy((*usuario).nombre,(char*)count1);
+            strcpy((*usuario).apellido,(char*)count2);        
         }
     }
 

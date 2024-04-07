@@ -17,10 +17,10 @@ typedef struct{
 } Cliente;
 
 typedef struct{
-    char *DNI;
-    char *nombre;
-    char *apellido;
-    char *contrasena;
+    char DNI[10];
+    char nombre[15];
+    char apellido[15];
+    char contrasena[15];
 } Usuario;
 
 
@@ -33,8 +33,8 @@ typedef struct{
 typedef struct{
     int id_tipo_habitacion;
     int precio_habitacion;
-    char *nombre;
-    char *descripcion;
+    char nombre[15];
+    char descripcion[15];
 } Tipo_habitacion;
 
 typedef struct{
@@ -44,7 +44,7 @@ typedef struct{
 
 typedef struct{
     int id_reserva_hotel;
-    char *DNI;
+    char DNI[10];
     int id_habitacion;
     Fecha fecha_ini;
     Fecha fecha_fin;
@@ -54,12 +54,13 @@ void crearBD();
 
 int registrarCliente(Cliente *cliente);
 
+int comprobarCliente();
+
 int realizarReserva();
 
 int registrarUsuario(Usuario *u);
 
 int loggear(Usuario *usuario);
-
 
 void anularReserva();
 

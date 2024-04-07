@@ -8,7 +8,6 @@
 
 void main(){
     crearBD();
-
     char ve;
     while (ve != '3'){
         fflush(stdin);
@@ -24,32 +23,27 @@ void main(){
 
         if (ve == '1'){
             while (ve != '6'){
+
                 //INICIAR SESION
 
                 printf("\n INICIO SESION\n");
-                char str1[15];
-                char str2[15];
+
                 Usuario *usuario = malloc(sizeof(Usuario));
 
-
                 printf("Introduzca su DNI: ");
-                scanf("%s", str1);
+                scanf("%s", &(*usuario).DNI);
+                excepcionDNI((*usuario).DNI);
                 fflush(stdin); 
-                str1[8] = toupper(str1[8]);
 
     
                 printf("Introduzca su contrasena: ");
-                scanf("%s",str2);
-                fflush(stdin); 
+                scanf("%s",&(*usuario).contrasena);
+                excepcionContrasena((*usuario).contrasena);
+                fflush(stdin);
 
-
-                (*usuario).DNI = str1;
-                (*usuario).contrasena = str2;
-                
-                
 
                 int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false)
-                
+
                 if (acceso == 0){
                     while (acceso == 0){
                         printf("\n1. Realizar reserva");
@@ -73,8 +67,29 @@ void main(){
 
                                 printf("\nIndique su DNI: ");
                                 scanf("%s", (*r).DNI);  
-                                (*r).fecha_ini;
-                                (*r).fecha_fin;
+                                //comprobarCliente((*r).DNI);
+
+
+                                printf("\nAño inicio: ");
+                                scanf("%i", &(*r).fecha_ini.anyo);  
+                                printf("\nMes inicio: ");
+                                scanf("%i", &(*r).fecha_ini.mes);  
+                                printf("\nDia inicio ");
+                                scanf("%i", &(*r).fecha_ini.dia);  
+
+
+                                printf("\nAño fin: ");
+                                scanf("%i", &(*r).fecha_fin.anyo);  
+                                printf("\nMes fin: ");
+                                scanf("%i", &(*r).fecha_fin.mes);  
+                                printf("\nDia fin ");
+                                scanf("%i", &(*r).fecha_fin.dia);
+
+                                fflush(stdin); 
+
+                                realizarReserva(r);
+
+
                             }
                             else{
                                 Cliente *c = malloc(sizeof(Cliente));
@@ -99,24 +114,18 @@ void main(){
                                 scanf("%s", (*c).telefono);  
                                 printf("\nIndique su numero de tarjeta: ");
                                 scanf("%s", (*c).num_tarjeta);  
+
                                 printf("\nIndique su anyo de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.anyo);  
                                 printf("\nIndique su mes de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.mes);  
                                 printf("\nIndique su dia de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.dia);  
-                                fflush(stdin); 
-
-
-                                Fecha fec = (*c).fecha_nac;
-                                
-
-
+                                fflush(stdin);                                 
 
                                 registrarCliente(c);
 
                             }
-                            realizarReserva();
                         }
                         else if (ve == '2'){
                             anularReserva();
@@ -143,44 +152,33 @@ void main(){
         else if (ve == '2'){
             //REGISTRAR USUARIO
             printf("\nREGISTRO USUARIO\n");
-           
-            char str1[15];
-            char str2[15];
-            char str3[15];
-            char str4[15];
+            Usuario *usuario;
+            usuario = (Usuario*) malloc(sizeof(Usuario));
 
             printf("Introduzca su DNI: ");
-            scanf("%s", str1);        
+            scanf("%s", &(*usuario).DNI);        
             fflush(stdin); 
-            excepcionDNI(str1);
+            excepcionDNI((*usuario).DNI);
 
             printf("Introduzca su nombre: ");
-            scanf("%s", str2);
+            scanf("%s", &(*usuario).nombre);
             fflush(stdin);
-            excepcionNombre(str2);
+            excepcionNombre((*usuario).nombre);
 
             printf("Introduzca su apellido: ");
-            scanf("%s",str3);
+            scanf("%s", &(*usuario).apellido);
             fflush(stdin); 
-            excepcionApellido(str3);
+            excepcionApellido((*usuario).apellido);
 
             printf("Introduzca su contrasena: ");
-            scanf("%s",str4);
+            scanf("%s", &(*usuario).contrasena);
             fflush(stdin); 
-            excepcionContrasena(str4);
+            excepcionContrasena((*usuario).contrasena);
 
-
-        Usuario *u1;
-        u1 = (Usuario*) malloc(sizeof(Usuario));
-        (*u1).DNI = str1;
-        (*u1).nombre = str2;
-        (*u1).apellido = str3;
-        (*u1).contrasena = str4;
-
-        registrarUsuario(u1);
-        free(u1);
-        u1 = NULL;
-        }
+            registrarUsuario(usuario);
+            free(usuario);
+            usuario = NULL;
+            }
         else if (ve == '3'){
 
             //SALIR DEL PROGRAMA
