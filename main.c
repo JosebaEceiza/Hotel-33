@@ -8,12 +8,13 @@
 
 void main(){
     crearBD();
-    crearTipoHabitaciones();
+    //crearTipoHabitaciones();
+    //crearHabitaciones();
     char ve;
     while (ve != '3'){
         fflush(stdin);
 
-        printf("BIENVENIDO A HOTEL 33");
+        printf("\nBIENVENIDO A HOTEL 33");
         printf("\n1. Iniciar Sesion");
         printf("\n2. Registrar Usuario");
         printf("\n3. Salir del programa\n");
@@ -136,6 +137,7 @@ void main(){
                         else if (ve == '3'){
                         }
                         else if (ve == '4'){
+                            mostrarHabitaciones();
                         }
                         else if (ve == '5'){
                         }

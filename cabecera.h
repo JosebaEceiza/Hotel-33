@@ -80,6 +80,8 @@ void excepcionContrasena(char *str);
 
 int crearTipoHabitaciones();
 
+void crearHabitaciones();
+
 void mostrarHabitaciones();
 
 

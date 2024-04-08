@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<string.h>
-
 #include"sqlite3.h"
 #include"cabecera.h"
 
@@ -116,42 +115,60 @@ int crearTipoHabitaciones(){
 
 
 void crearHabitaciones(){
+
+    sqlite3* db;
+    int status = sqlite3_open("base_datos.db", &db);
+    sqlite3_stmt *stmt;
+
+    char *error_message = 0;
+
+
+   //INSERTS DE HABITACION TIPO A
     for ( int i = 1; i< 6 ; i++){
-        Habitacion ha;
-        ha.id_habitacion = i;
-        ha.id_tipo_habitacion = 'A';
-        ha.capacidad = 2;
-
-
+        char insert_sql[100];
+        sprintf(insert_sql, "INSERT INTO HABITACION VALUES (%d,'%s','%s',%d);", i,"A","Habitacion",2);
+        status = sqlite3_exec(db, insert_sql, 0, 0, &error_message);
+        if (status != SQLITE_OK) {
+            fprintf(stderr, "Error al insertar fila: %s\n", error_message);
+            sqlite3_free(error_message);
+        }
     }
 
     for ( int i = 6; i< 11 ; i++){
-        Habitacion ha;
-        ha.id_habitacion = i;
-        ha.id_tipo_habitacion = 'B';
-        ha.capacidad = 3;
-
-
+        char insert_sql[100];
+        sprintf(insert_sql, "INSERT INTO HABITACION VALUES (%d,'%s','%s',%d);", i,"B","Habitacion",3);
+        status = sqlite3_exec(db, insert_sql, 0, 0, &error_message);
+        if (status != SQLITE_OK) {
+            fprintf(stderr, "Error al insertar fila: %s\n", error_message);
+            sqlite3_free(error_message);
+        }
     }
 
     for ( int i = 11; i< 14 ; i++){
-        Habitacion ha;
-        ha.id_habitacion = i;
-        ha.id_tipo_habitacion = 'C';
-        ha.capacidad = 4;
+        char insert_sql[100];
+        sprintf(insert_sql, "INSERT INTO HABITACION VALUES (%d,'%s','%s',%d);", i,"C","Habitacion",4);
+        status = sqlite3_exec(db, insert_sql, 0, 0, &error_message);
+        if (status != SQLITE_OK) {
+            fprintf(stderr, "Error al insertar fila: %s\n", error_message);
+            sqlite3_free(error_message);
+        }
 
 
     }
 
     for ( int i = 14; i< 16 ; i++){
-        Habitacion ha;
-        ha.id_habitacion = i;
-        ha.id_tipo_habitacion = 'D';
-        ha.capacidad = 4;
+        char insert_sql[100];
+        sprintf(insert_sql, "INSERT INTO HABITACION VALUES (%d,'%s','%s',%d);", i,"D","Habitacion",4);
+        status = sqlite3_exec(db, insert_sql, 0, 0, &error_message);
+        if (status != SQLITE_OK) {
+            fprintf(stderr, "Error al insertar fila: %s\n", error_message);
+            sqlite3_free(error_message);
+        }
 
 
     }
 
+    sqlite3_close(db);
 
 
 }
@@ -199,7 +216,7 @@ void mostrarHabitaciones(){
     printf("\n\t\tCama individual: 2");
     printf("\n\t\tCama matrimonial: 1");
     printf("\n\t\tServicio adicional: Wifi");
-    printf("\n\n\t(todas las habitaciones incluyen banos y duchas)");
+    printf("\n\n\t(todas las habitaciones incluyen banos y duchas)\n\n");
 
 
 
