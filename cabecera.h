@@ -78,7 +78,7 @@ void excepcionApellido(char *str);
 
 void excepcionContrasena(char *str);
 
-void crearHabitaciones();
+int crearTipoHabitaciones();
 
 void mostrarHabitaciones();
 

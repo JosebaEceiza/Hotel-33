@@ -8,6 +8,7 @@
 
 void main(){
     crearBD();
+    crearTipoHabitaciones();
     char ve;
     while (ve != '3'){
         fflush(stdin);

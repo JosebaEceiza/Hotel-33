@@ -30,7 +30,7 @@ void crearBD(){
     
 
     char *sql3 = "Create table if not exists TIPO_HABITACION ("
-                "ID_TIPO_HABITACION integer primary key not null,"
+                "ID_TIPO_HABITACION varchar primary key not null,"
                 "PRECIO integer not null);";
     int x3 = sqlite3_exec(db,sql3,0,0,0);
 
