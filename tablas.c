@@ -17,9 +17,11 @@ void crearBD(){
 
     char *sql1 = "Create table if not exists RESERVA_HOTEL ("
                 "ID_RESERVA_HOTEL integer primary key not null,"
-                "FECHA_INI DATE,"
-                "FECHA_FIN DATE,"
-                "DNI VARCHAR,"
+                "FECHA_INI DATE not null,"
+                "FECHA_FIN DATE not null,"
+                "DNI VARCHAR not null,"
+                "numPersona integer not null,"
+
                 "ID_HABITACION INTEGER);";
     int x1 = sqlite3_exec(db,sql1,0,0,0);
 

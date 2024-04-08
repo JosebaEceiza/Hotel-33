@@ -87,6 +87,8 @@ void main(){
 
                                 fflush(stdin); 
 
+                                printf("\nNumero de Personas: ");
+                                scanf("%i", (*r).numPersona);
                                 realizarReserva(r);
 
 

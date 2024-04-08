@@ -31,21 +31,23 @@ typedef struct{
 } Tipo_comida;
 
 typedef struct{
-    int id_tipo_habitacion;
+    char id_tipo_habitacion;
     int precio_habitacion;
-    char nombre[15];
-    char descripcion[15];
 } Tipo_habitacion;
 
 typedef struct{
     int id_habitacion;
-    int id_tipo_habitacion;
+    char id_tipo_habitacion;
+    int capacidad;
+    char nombre[15];
+    
 } Habitacion;
 
 typedef struct{
     int id_reserva_hotel;
     char DNI[10];
     int id_habitacion;
+    int numPersona;
     Fecha fecha_ini;
     Fecha fecha_fin;
 } Reserva;
@@ -75,6 +77,8 @@ void excepcionNombre(char *str);
 void excepcionApellido(char *str);
 
 void excepcionContrasena(char *str);
+
+void crearHabitaciones();
 
 
 #endif
