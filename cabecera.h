@@ -32,7 +32,7 @@ typedef struct{
 
 typedef struct{
     char id_tipo_habitacion;
-    int precio_habitacion;
+    int precio;
 } Tipo_habitacion;
 
 typedef struct{
@@ -79,6 +79,8 @@ void excepcionApellido(char *str);
 void excepcionContrasena(char *str);
 
 void crearHabitaciones();
+
+void mostrarHabitaciones();
 
 
 #endif

@@ -76,7 +76,7 @@ int realizarReserva(Reserva *r){
 
 
     int ID_RESERVA_HOTEL = 3;
-    
+    char *DNI = (*r).DNI;
     int ID_HABITACION = 3;
 
     sqlite3_bind_int(stmt1, 1, ID_RESERVA_HOTEL);
