@@ -33,18 +33,18 @@ void main(){
                 Usuario *usuario = malloc(sizeof(Usuario));
 
                 printf("Introduzca su DNI: ");
-                scanf("%s", &(*usuario).DNI);
+                scanf("%s", (*usuario).DNI);
                 excepcionDNI((*usuario).DNI);
                 fflush(stdin); 
 
     
                 printf("Introduzca su contrasena: ");
-                scanf("%s",&(*usuario).contrasena);
+                scanf("%s",(*usuario).contrasena);
                 excepcionContrasena((*usuario).contrasena);
                 fflush(stdin);
 
 
-                int acceso = loggear(usuario);  //esto devolvera un 1(true) o 0(false)
+                int acceso = loggear(usuario);  
 
                 if (acceso == 0){
                     while (acceso == 0){
@@ -67,32 +67,13 @@ void main(){
 
                             if ((registro == 'S') || (registro =='s')){
 
-                                printf("\nIndique su DNI: ");
-                                scanf("%s", (*r).DNI);  
-                                //comprobarCliente((*r).DNI);
-
-
-                                printf("\nAño inicio: ");
-                                scanf("%i", &(*r).fecha_ini.anyo);  
-                                printf("\nMes inicio: ");
-                                scanf("%i", &(*r).fecha_ini.mes);  
-                                printf("\nDia inicio ");
-                                scanf("%i", &(*r).fecha_ini.dia);  
-
-
-                                printf("\nAño fin: ");
-                                scanf("%i", &(*r).fecha_fin.anyo);  
-                                printf("\nMes fin: ");
-                                scanf("%i", &(*r).fecha_fin.mes);  
-                                printf("\nDia fin ");
-                                scanf("%i", &(*r).fecha_fin.dia);
-
-                                fflush(stdin); 
-
-                                printf("\nNumero de Personas: ");
-                                scanf("%i", (*r).numPersona);
-                                realizarReserva(r);
-
+                                int valor = 1;
+                                while (valor != 0){
+                                    printf("El DNI no esta en la base de datos introduzcala de nuevo: ");
+                                    printf("\nIndique su DNI: ");
+                                    scanf("%s", (*r).DNI);  
+                                    valor = comprobarCliente((*r).DNI);
+                                }                    
 
                             }
                             else{
@@ -105,6 +86,7 @@ void main(){
                                 printf("\nIndique su DNI: ");
                                 scanf("%s", (*c).DNI);  
                                 excepcionDNI((*c).DNI);
+                                (*r).DNI = (*c).DNI;
 
                                 printf("\nIndique su nombre: ");
                                 scanf("%s", (*c).nombre);  
@@ -130,6 +112,25 @@ void main(){
                                 registrarCliente(c);
 
                             }
+                            printf("\nAño inicio: ");
+                            scanf("%i", &(*r).fecha_ini.anyo);  
+                            printf("\nMes inicio: ");
+                            scanf("%i", &(*r).fecha_ini.mes);  
+                            printf("\nDia inicio ");
+                            scanf("%i", &(*r).fecha_ini.dia);  
+
+                            printf("\nAño fin: ");
+                            scanf("%i", &(*r).fecha_fin.anyo);  
+                            printf("\nMes fin: ");
+                            scanf("%i", &(*r).fecha_fin.mes);  
+                            printf("\nDia fin ");
+                            scanf("%i", &(*r).fecha_fin.dia);
+
+                            printf("\nNumero de Personas: ");
+                            scanf("%i", (*r).numPersona);
+                            realizarReserva(r);
+
+
                         }
                         else if (ve == '2'){
                             anularReserva();
@@ -161,22 +162,22 @@ void main(){
             usuario = (Usuario*) malloc(sizeof(Usuario));
 
             printf("Introduzca su DNI: ");
-            scanf("%s", &(*usuario).DNI);        
+            scanf("%s", (*usuario).DNI);        
             fflush(stdin); 
             excepcionDNI((*usuario).DNI);
 
             printf("Introduzca su nombre: ");
-            scanf("%s", &(*usuario).nombre);
+            scanf("%s", (*usuario).nombre);
             fflush(stdin);
             excepcionNombre((*usuario).nombre);
 
             printf("Introduzca su apellido: ");
-            scanf("%s", &(*usuario).apellido);
+            scanf("%s", (*usuario).apellido);
             fflush(stdin); 
             excepcionApellido((*usuario).apellido);
 
             printf("Introduzca su contrasena: ");
-            scanf("%s", &(*usuario).contrasena);
+            scanf("%s", (*usuario).contrasena);
             fflush(stdin); 
             excepcionContrasena((*usuario).contrasena);
 

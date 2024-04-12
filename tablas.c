@@ -27,13 +27,10 @@ void crearBD(){
                 "descripcion varchar not null);";
     int x2 = sqlite3_exec(db,sql2,0,0,0);
 
-    
-
     char *sql3 = "Create table if not exists TIPO_HABITACION ("
                 "ID_TIPO_HABITACION varchar primary key not null,"
                 "PRECIO integer not null);";
     int x3 = sqlite3_exec(db,sql3,0,0,0);
-
 
     char *sql4 = "Create table if not exists HABITACION ("
                 "ID_HABITACION integer primary key not null,"
@@ -51,8 +48,6 @@ void crearBD(){
                 "ID_HABITACION INTEGER not null);";
     int x5 = sqlite3_exec(db,sql5,0,0,0);
     
-
-
     char *sql6 = "Create table if not exists RESERVA_GYM ("
                 "ID_RESERVA integer primary key not null,"
                 "DNI varchar not null);";
@@ -64,11 +59,6 @@ void crearBD(){
                 "DNI varchar not null,"
                 "ID_TIPO_COMIDA integer not null);";
     int x7 = sqlite3_exec(db,sql7,0,0,0);
-
-
-    
-
-    
 
     sqlite3_close(db);
 }

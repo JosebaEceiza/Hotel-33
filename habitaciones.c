@@ -187,7 +187,7 @@ void mostrarHabitaciones(){
     printf("\n\t\tCama matrimonial: 1");
     printf("\n\t\tServicio adicional: Ninguna");
 
-    
+
 
     printf("\n\n\tHABITACIONES TIPO B:");
 
@@ -197,7 +197,7 @@ void mostrarHabitaciones(){
     printf("\n\t\tCama matrimonial: 1");
     printf("\n\t\tServicio adicional: Vistas al mar");
 
-    
+
 
     printf("\n\n\tHABITACIONES TIPO C:");
 
