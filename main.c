@@ -73,6 +73,8 @@ void main(){
 
                         ve = getchar();
                         fflush(stdin); 
+                        excepcionNumeros(&ve);
+
 
                         if (ve == '1'){
                             Reserva *r = malloc(sizeof(Reserva));
@@ -127,19 +129,35 @@ void main(){
                                 registrarCliente(c);
 
                             }
-                            printf("\nAño inicio: ");
-                            scanf("%i", &(*r).fecha_ini.anyo);  
-                            printf("\nMes inicio: ");
-                            scanf("%i", &(*r).fecha_ini.mes);  
-                            printf("\nDia inicio ");
-                            scanf("%i", &(*r).fecha_ini.dia);  
+                            printf("\nAno inicio: ");
+                            scanf("%i", &(*r).fecha_ini.anyo);
+                            fflush(stdin);
+                            excepionAnyoReserva(&(*r).fecha_ini.anyo);
 
-                            printf("\nAño fin: ");
+                            printf("\nMes inicio: ");  
+                            scanf("%i", &(*r).fecha_ini.mes);
+                            fflush(stdin);
+                            excepionMesReserva(&(*r).fecha_ini.mes);
+   
+                            printf("\nDia inicio:");
+                            scanf("%i", &(*r).fecha_ini.dia);  
+                            fflush(stdin);
+                            excepcionDiaReserva(&(*r).fecha_ini.mes, &(*r).fecha_ini.dia);
+
+                            printf("\nAno fin:");
                             scanf("%i", &(*r).fecha_fin.anyo);  
-                            printf("\nMes fin: ");
-                            scanf("%i", &(*r).fecha_fin.mes);  
-                            printf("\nDia fin ");
+                            fflush(stdin);
+                            excepionAnyoReserva(&(*r).fecha_fin.anyo);
+
+                            printf("\nMes fin:");
+                            scanf("%i", &(*r).fecha_fin.mes);
+                            fflush(stdin);
+                            excepionMesReserva(&(*r).fecha_fin.mes);  
+
+                            printf("\nDia fin:");
                             scanf("%i", &(*r).fecha_fin.dia);
+                            fflush(stdin);
+                            excepcionDiaReserva(&(*r).fecha_fin.mes, &(*r).fecha_fin.dia);
 
                             printf("\nNumero de Personas: ");
                             scanf("%i", &(*r).numPersona);

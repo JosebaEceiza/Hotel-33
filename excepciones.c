@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<ctype.h>
 #include <string.h>
+#include <time.h>
 
 
 
@@ -139,4 +140,54 @@ void excepcionContrasena(char *str){
 
 }
 
+}
+
+
+void excepionAnyoReserva(int *anyo){
+    time_t tiempo_actual;
+    struct tm* tiempo_info;
+    time(&tiempo_actual);
+    tiempo_info = localtime(&tiempo_actual);
+
+    int anyo_actual = tiempo_info->tm_year + 1900;
+
+    while (*anyo < anyo_actual || *anyo >= anyo_actual+50){
+        printf("El ano introducido debe ser mayor que %d. Intentelo de nuevo: ", anyo_actual);
+        scanf("%d", anyo);
+        fflush(stdin);
+    }
+
+}
+
+
+
+void excepionMesReserva(int *mes){
+    while(*mes < 1 || *mes > 12){
+         printf("El mes introducido es incorrecto. Intentelo de nuevo: ");
+         scanf("%d", mes);
+         fflush(stdin);
+    }
+}
+
+
+void excepcionDiaReserva(int *mes , int *dia){
+    int valido = 0;
+    while(valido != 1){
+        if(*mes % 2 == 0 && *mes != 2 && *dia <= 31 && *dia >= 1){
+            valido = 1;
+        }
+        else if(*mes % 2 != 0 && *dia <= 30 && *dia >= 1){
+            valido = 1;
+        }
+        else if(*mes == 2 && *dia <= 28 && *dia >= 1 ){
+            valido = 1;
+        }
+        else{
+            printf("El dia introducido es incorrecto. Intentelo de nuevo: ");
+            scanf("%d", dia);
+            fflush(stdin);
+
+        }
+
+    }
 }
