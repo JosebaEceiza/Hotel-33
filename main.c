@@ -18,6 +18,10 @@ void main(){
     fechafin.dia = 25;
 
     disponibilidadHabitaciones(fechaini,fechafin);
+    Habitacion habitacion;
+    printf("Elige una habitacion: ");
+    scanf("%i",habitacion.id_habitacion);
+
     crearBD();
     //crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
     //crearHabitaciones();   //falta por crear condicion de que si esta creado que no se ejecute

@@ -174,8 +174,8 @@ void crearHabitaciones(){
 
 }
     
-int disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin){
-     sqlite3* db;
+int* disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin){
+    sqlite3* db;
     int status = sqlite3_open("base_datos.db", &db);
     sqlite3_stmt *stmt;
 
@@ -184,7 +184,7 @@ int disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin){
     if (result != SQLITE_OK){
         printf("Error preparanado setencia (SELECT)\n");
         printf("%s\n", sqlite3_errmsg(db));
-        return 1;
+        return NULL;
     }
     char *fechaFormateadaInicio = malloc(11);
     sprintf(fechaFormateadaInicio, "%d-%02d-%02d", fechaini.anyo, fechaini.mes, fechaini.dia);
@@ -202,20 +202,24 @@ int disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin){
         printf("%i",valor);
     }
 
-    int lista2[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    int *lista2 = malloc(16 * sizeof(int));
+    for (int i = 0; i < 16; i++) {
+        lista2[i] = i;
+    }
+
     for (int j = 0; j< 15;j++){
         if(lista[j] == j){
             lista2[j] = 0;
         }        
     }
     printf("\nHabitaciones disponibles: ");
-    for(int k = 0; k<16;k++){
+    for(int k = 0; k<16; k++){
         if (lista2[k]!= 0){
             printf("\n%i",lista2[k]);}  
     }
     sqlite3_finalize(stmt);
     sqlite3_close(db);
-    return 0;
+    return lista2;
 }
 
 void mostrarHabitaciones(){
