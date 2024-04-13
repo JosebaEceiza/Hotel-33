@@ -84,5 +84,7 @@ void crearHabitaciones();
 
 void mostrarHabitaciones();
 
+int disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin);
+
 
 #endif

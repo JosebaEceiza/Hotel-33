@@ -61,7 +61,6 @@ int comprobarCliente(char *c){
     sqlite3_stmt *stmt;
 
     char *sql = "SELECT DNI FROM CLIENTE WHERE DNI LIKE ?;";
-
     int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
     if (result != SQLITE_OK) {
 		printf("Error preparing statement (SELECT)\n");
@@ -71,22 +70,19 @@ int comprobarCliente(char *c){
 
     
     char *DNI = c;
-
-    sqlite3_bind_text(stmt, 1, DNI, strlen(DNI), SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1, DNI, -1, SQLITE_STATIC);
     
     result = sqlite3_step(stmt);
-    if (result != SQLITE_DONE) {
-        fprintf(stderr, "Error al ejecutar el statement: %s\n", sqlite3_errmsg(db));
-        return 1;
-    }
+
     const char *count1 = NULL;
 
     count1 = (char *)sqlite3_column_text(stmt, 0);
     if (strcmp(count1, c) != 0){
-        printf("Este cliente no esta registrado");
+        printf("\nEste cliente no esta registrado");
         return 1;
-    }else{
-        printf("Existe cliente");
+    }
+    else{
+        printf("\nExiste cliente");
     }
     
 

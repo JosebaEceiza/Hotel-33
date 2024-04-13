@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include"sqlite3.h"
 #include"cabecera.h"
 
@@ -173,7 +174,49 @@ void crearHabitaciones(){
 
 }
     
+int disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin){
+     sqlite3* db;
+    int status = sqlite3_open("base_datos.db", &db);
+    sqlite3_stmt *stmt;
 
+    char *sql = "SELECT HABITACION.ID_HABITACION FROM HABITACION INNER JOIN RESERVA_HOTEL ON HABITACION.ID_HABITACION=RESERVA_HOTEL.ID_HABITACION WHERE RESERVA_HOTEL.FECHA_FIN > ? OR RESERVA_HOTEL.FECHA_INI < ?;";
+    int result = sqlite3_prepare_v2(db,sql,-1,&stmt, NULL);
+    if (result != SQLITE_OK){
+        printf("Error preparanado setencia (SELECT)\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return 1;
+    }
+    char *fechaFormateadaInicio = malloc(11);
+    sprintf(fechaFormateadaInicio, "%d-%02d-%02d", fechaini.anyo, fechaini.mes, fechaini.dia);
+
+    char *fechaFormateadaFin = malloc(11);
+    sprintf(fechaFormateadaFin, "%d-%02d-%02d", fechafin.anyo, fechafin.mes, fechafin.dia);
+
+    sqlite3_bind_text(stmt, 1, fechaFormateadaInicio, -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, fechaFormateadaFin, -1, SQLITE_STATIC);
+    int lista[16] = {0};
+    int valor = 0;
+    while((result = sqlite3_step(stmt)) != SQLITE_DONE){
+        valor = sqlite3_column_int(stmt, 0);
+        lista[valor] = valor;
+        printf("%i",valor);
+    }
+
+    int lista2[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    for (int j = 0; j< 15;j++){
+        if(lista[j] == j){
+            lista2[j] = 0;
+        }        
+    }
+    printf("\nHabitaciones disponibles: ");
+    for(int k = 0; k<16;k++){
+        if (lista2[k]!= 0){
+            printf("\n%i",lista2[k]);}  
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return 0;
+}
 
 void mostrarHabitaciones(){
 
@@ -217,7 +260,5 @@ void mostrarHabitaciones(){
     printf("\n\t\tCama matrimonial: 1");
     printf("\n\t\tServicio adicional: Wifi");
     printf("\n\n\t(todas las habitaciones incluyen banos y duchas)\n\n");
-
-
 
 }

@@ -7,6 +7,17 @@
 
 
 void main(){
+    Fecha fechaini;
+    Fecha fechafin;
+    fechaini.anyo = 2004;
+    fechaini.mes = 06;
+    fechaini.dia = 10;
+
+    fechafin.anyo = 2004;
+    fechafin.mes = 06;
+    fechafin.dia = 25;
+
+    disponibilidadHabitaciones(fechaini,fechafin);
     crearBD();
     //crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
     //crearHabitaciones();   //falta por crear condicion de que si esta creado que no se ejecute
@@ -66,12 +77,13 @@ void main(){
                             fflush(stdin); 
 
                             if ((registro == 'S') || (registro =='s')){
-
-                                int valor = 1;
+                                printf("\nIndique su DNI: ");
+                                scanf("%s", (*r).DNI);  
+                                int valor = comprobarCliente((*r).DNI);
                                 while (valor != 0){
                                     printf("El DNI no esta en la base de datos introduzcala de nuevo: ");
-                                    printf("\nIndique su DNI: ");
                                     scanf("%s", (*r).DNI);  
+
                                     valor = comprobarCliente((*r).DNI);
                                 }                    
 
@@ -127,6 +139,15 @@ void main(){
 
                             printf("\nNumero de Personas: ");
                             scanf("%i", &(*r).numPersona);
+
+                            mostrarHabitaciones();
+                            printf("\nQue tipo de habitacion quieres: ");
+
+                            char habi;                                fflush(stdin);                                 
+
+                            scanf("%c", &habi);
+                            habi = toupper(habi);
+                            printf("\n%c",habi);
                             realizarReserva(r);
 
 
