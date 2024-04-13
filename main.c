@@ -85,8 +85,7 @@ void main(){
 
                                 printf("\nIndique su DNI: ");
                                 scanf("%s", (*c).DNI);  
-                                excepcionDNI((*c).DNI);
-                                (*r).DNI = (*c).DNI;
+                                //excepcionDNI((*c).DNI);
 
                                 printf("\nIndique su nombre: ");
                                 scanf("%s", (*c).nombre);  
@@ -127,7 +126,7 @@ void main(){
                             scanf("%i", &(*r).fecha_fin.dia);
 
                             printf("\nNumero de Personas: ");
-                            scanf("%i", (*r).numPersona);
+                            scanf("%i", &(*r).numPersona);
                             realizarReserva(r);
 
 
