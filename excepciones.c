@@ -202,3 +202,52 @@ void excepcionNumeroPersonas(int *num){
     }
 
 }
+
+
+void excepcionNumeroTelefono(char *str){
+    int numerosCorrectos = 0;
+    int valido = 0;
+    while(valido != 1){
+        int numerosCorrectos = 0;
+        
+        for(int i = 0; i < strlen(str); i++){
+            if(isdigit(str[i])){
+                numerosCorrectos++;
+            }
+        }
+        if(numerosCorrectos == 9){
+            valido = 1;
+        }
+        else{
+            printf("El numero de telefono debe tener 9 digitos. Intentelo de nuevo:");
+            scanf("%s", str);
+            fflush(stdin);
+        }
+    }
+
+}
+
+
+
+void excepcionNumeroTarjeta(char *str){
+    int numerosCorrectos = 0;
+    int valido = 0;
+    while(valido != 1){
+        int numerosCorrectos = 0;
+        
+        for(int i = 0; i < strlen(str); i++){
+            if(isdigit(str[i])){
+                numerosCorrectos++;
+            }
+        }
+        if(numerosCorrectos == 16){
+            valido = 1;
+        }
+        else{
+            printf("El numero de tarjeta debe tener 16 digitos. Intentelo de nuevo:");
+            scanf("%s", str);
+            fflush(stdin);
+        }
+    }
+
+}

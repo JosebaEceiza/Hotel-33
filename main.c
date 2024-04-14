@@ -98,11 +98,16 @@ void main(){
                                 printf("\nIndique su apellido: ");
                                 scanf("%s", (*c).apellido);  
                                 excepcionApellido((*c).apellido);
-
+                    
                                 printf("\nIndique su telefono: ");
                                 scanf("%s", (*c).telefono);  
+                                fflush(stdin);
+                                excepcionNumeroTelefono((*c).telefono);
+
                                 printf("\nIndique su numero de tarjeta: ");
-                                scanf("%s", (*c).num_tarjeta);  
+                                scanf("%s", (*c).num_tarjeta);
+                                fflush(stdin);
+                                excepcionNumeroTarjeta((*c).num_tarjeta); 
 
                                 printf("\nIndique su anyo de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.anyo);  

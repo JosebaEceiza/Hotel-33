@@ -94,6 +94,12 @@ void excepcionDiaReserva(int *mes , int *dia);
 
 void excepcionNumeroPersonas(int *num);
 
+void excepcionNumeroTelefono(char *str);
+
+void excepcionNumeroTarjeta(char *str);
+
+
+
 
 
 
