@@ -9,8 +9,8 @@
 void main(){
 
     crearBD();
-    crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
-    crearHabitaciones();   //falta por crear condicion de que si esta creado que no se ejecute
+    crearTipoHabitaciones(); //si base_datos.db está creado que no se ejecute
+    crearHabitaciones();   //si base_datos.db está creado que no se ejecute
     char ve;
     while (ve != '3'){
         fflush(stdin);
@@ -114,12 +114,19 @@ void main(){
                                 excepcionNumeroTarjeta((*c).num_tarjeta);
 
                                 printf("\nIndique su anyo de nacimiento: ");
-                                scanf("%i", &(*c).fecha_nac.anyo);  
+                                scanf("%i", &(*c).fecha_nac.anyo);
+                                fflush(stdin);
+                                excepcionAnyoNacimiento(&(*c).fecha_nac.anyo);
+
                                 printf("\nIndique su mes de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.mes);  
+                                fflush(stdin);
+                                excepcionMesReserva(&(*c).fecha_nac.mes);
+
                                 printf("\nIndique su dia de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.dia);  
-                                fflush(stdin);                                 
+                                fflush(stdin);
+                                excepcionDiaReserva(&(*c).fecha_nac.mes, &(*c).fecha_nac.dia);                                
 
                                 registrarCliente(c);
 
@@ -129,12 +136,12 @@ void main(){
                                 printf("\nAno inicio: ");
                                 scanf("%i", &(*r).fecha_ini.anyo);
                                 fflush(stdin);
-                                excepionAnyoReserva(&(*r).fecha_ini.anyo);
+                                excepcionAnyoReserva(&(*r).fecha_ini.anyo);
 
                                 printf("\nMes inicio: ");  
                                 scanf("%i", &(*r).fecha_ini.mes);
                                 fflush(stdin);
-                                excepionMesReserva(&(*r).fecha_ini.mes);
+                                excepcionMesReserva(&(*r).fecha_ini.mes);
 
                                 printf("\nDia inicio:");
                                 scanf("%i", &(*r).fecha_ini.dia);  
@@ -144,12 +151,12 @@ void main(){
                                 printf("\nAno fin:");
                                 scanf("%i", &(*r).fecha_fin.anyo);  
                                 fflush(stdin);
-                                excepionAnyoReserva(&(*r).fecha_fin.anyo);
+                                excepcionAnyoReserva(&(*r).fecha_fin.anyo);
 
                                 printf("\nMes fin:");
                                 scanf("%i", &(*r).fecha_fin.mes);
                                 fflush(stdin);
-                                excepionMesReserva(&(*r).fecha_fin.mes);  
+                                excepcionMesReserva(&(*r).fecha_fin.mes);  
 
                                 printf("\nDia fin:");
                                 scanf("%i", &(*r).fecha_fin.dia);

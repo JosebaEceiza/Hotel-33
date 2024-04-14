@@ -143,7 +143,7 @@ void excepcionContrasena(char *str){
 }
 
 
-void excepionAnyoReserva(int *anyo){
+void excepcionAnyoReserva(int *anyo){
     time_t tiempo_actual;
     struct tm* tiempo_info;
     time(&tiempo_actual);
@@ -161,7 +161,7 @@ void excepionAnyoReserva(int *anyo){
 
 
 
-void excepionMesReserva(int *mes){
+void excepcionMesReserva(int *mes){
     while(*mes < 1 || *mes > 12){
          printf("El mes introducido es incorrecto. Intentelo de nuevo: ");
          scanf("%d", mes);
@@ -248,6 +248,23 @@ void excepcionNumeroTarjeta(char *str){
             scanf("%s", str);
             fflush(stdin);
         }
+    }
+
+}
+
+
+void excepcionAnyoNacimiento(int *anyo){
+    time_t tiempo_actual;
+    struct tm* tiempo_info;
+    time(&tiempo_actual);
+    tiempo_info = localtime(&tiempo_actual);
+
+    int anyo_actual = tiempo_info->tm_year + 1900;
+
+    while (*anyo < anyo_actual - 120  || *anyo > anyo_actual - 18){
+        printf("El ano introducido es incorrecto. Intentelo de nuevo: ");
+        scanf("%d", anyo);
+        fflush(stdin);
     }
 
 }

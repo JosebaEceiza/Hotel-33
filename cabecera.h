@@ -86,9 +86,9 @@ void mostrarHabitaciones();
 
 int* disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin);
 
-void excepionAnyoReserva(int *anyo);
+void excepcionAnyoReserva(int *anyo);
 
-void excepionMesReserva(int *mes);
+void excepcionMesReserva(int *mes);
 
 void excepcionDiaReserva(int *mes , int *dia);
 
@@ -99,6 +99,9 @@ void excepcionNumeroTelefono(char *str);
 void excepcionNumeroTarjeta(char *str);
 
 void logInicioSesion(char *message);
+
+void excepcionAnyoNacimiento(int *anyo);
+
 
 
 
