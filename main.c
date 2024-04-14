@@ -93,7 +93,7 @@ void main(){
 
                                 printf("\nIndique su DNI: ");
                                 scanf("%s", (*c).DNI);  
-                                //excepcionDNI((*c).DNI);
+                                excepcionDNI((*c).DNI);
 
                                 printf("\nIndique su nombre: ");
                                 scanf("%s", (*c).nombre);  
@@ -230,6 +230,11 @@ void main(){
                             mostrarHabitaciones();
                         }
                         else if (ve == '5'){
+                            Usuario *u = malloc(sizeof(Usuario));
+                            printf("\nIndique el DNI del usuario que quieres informarte: ");
+                            scanf("%s", (*u).DNI);  
+                            excepcionDNI((*u).DNI);
+                            informacionUsuario((*u).DNI);
                         }
                         else if (ve =='6'){
                             free(usuario);

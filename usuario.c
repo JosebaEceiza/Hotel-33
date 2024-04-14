@@ -99,3 +99,43 @@ int loggear(Usuario *usuario){
         return 1;
     }
 }
+
+
+
+int informacionUsuario(char *c) {
+    sqlite3 *db;
+    sqlite3_open("base_datos.db", &db);
+
+    sqlite3_stmt *stmt;
+    char *sql = "SELECT * FROM USUARIO WHERE DNI LIKE ?;";
+    int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    if (result != SQLITE_OK) {
+        printf("Error preparando la sentencia (SELECT)\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return 1;
+    }
+
+    // Asignar el valor del parámetro 'c' al primer argumento de la sentencia preparada
+    sqlite3_bind_text(stmt, 1, c, -1, SQLITE_STATIC);
+
+    // Ejecutar la sentencia
+    result = sqlite3_step(stmt);
+    if (result == SQLITE_ROW) {
+        // Mostrar la información del usuario
+        const unsigned char *dni = sqlite3_column_text(stmt, 0);
+        const unsigned char *nombre = sqlite3_column_text(stmt, 1);
+        const unsigned char *apellido = sqlite3_column_text(stmt, 2);
+        printf("\nInformacion del usuario.");
+        printf("\nDNI: %s", dni);
+        printf("\nNombre: %s", nombre);
+        printf("\nApellido: %s\n", apellido);
+    } else {
+        printf("\nEste usuario no existe.\n");
+    }
+
+    // Finalizar la sentencia y cerrar la conexión a la base de datos
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return 0;
+}

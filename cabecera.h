@@ -102,6 +102,9 @@ void logInicioSesion(char *message);
 
 void excepcionAnyoNacimiento(int *anyo);
 
+int informacionUsuario(char *c);
+
+
 
 
 
