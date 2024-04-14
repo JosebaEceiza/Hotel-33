@@ -64,22 +64,12 @@ int realizarReserva(Reserva *r){
 }
 
 int anularReserva(char *c){
-    char fechaFormateada[11]; // Buffer para almacenar la fecha formateada (YYYY-MM-DD)
-    time_t now;
-    struct tm *local;
-
-    time(&now); // Obtiene la hora actual en segundos desde el epoch
-    local = localtime(&now); // Convierte la hora actual en una estructura tm local
-
-    // Formatea la fecha actual en formato 'YYYY-MM-DD' y la almacena en el buffer fechaFormateada
-    strftime(fechaFormateada, sizeof(fechaFormateada), "%Y-%m-%d", local);
-
-
+    
     sqlite3* db;
     sqlite3_open("base_datos.db", &db);
     sqlite3_stmt *stmt;
 
-    char *sql = "DELETE FROM RESERVA_HOTEL WHERE  DNI LIKE ? AND FECHA_INI > ?;";
+    char *sql = "DELETE FROM RESERVA_HOTEL WHERE  DNI LIKE ?;";
 
     int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
     if (result != SQLITE_OK) {
@@ -87,11 +77,12 @@ int anularReserva(char *c){
 		printf("%s\n", sqlite3_errmsg(db));
 		return 1;
 	}
-    sqlite3_bind_text(stmt,1,c,-1,SQLITE_STATIC);
-    sqlite3_bind_text(stmt,1,fechaFormateada,-1,SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1,c, -1,SQLITE_STATIC);
 
     
     result = sqlite3_step(stmt);
+    
+
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
