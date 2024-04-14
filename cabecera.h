@@ -106,6 +106,8 @@ int informacionUsuario(char *c);
 
 void mostrarReservasCliente(char *dni_cliente);
 
+int existeBD();
+
 
 
 

@@ -1,5 +1,21 @@
 #include"sqlite3.h"
 #include"cabecera.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+int existeBD() {
+
+    FILE *archivo;
+    archivo = fopen("base_datos.db", "r");
+    if (archivo != NULL) {
+        fclose(archivo);
+        return 1;  // El archivo existe
+    } else {
+        return 0;  // El archivo no existe
+    }
+}
 
 void crearBD(){
     sqlite3* db;

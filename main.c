@@ -8,9 +8,11 @@
 
 void main(){
 
-    crearBD();
-    crearTipoHabitaciones(); //si base_datos.db está creado que no se ejecute
-    crearHabitaciones();   //si base_datos.db está creado que no se ejecute
+    if (!existeBD()) {
+        crearBD();
+        crearTipoHabitaciones();
+        crearHabitaciones();
+    }
     char ve;
     while (ve != '3'){
         fflush(stdin);
