@@ -7,20 +7,6 @@
 
 
 void main(){
-    Fecha fechaini;
-    Fecha fechafin;
-    fechaini.anyo = 2004;
-    fechaini.mes = 06;
-    fechaini.dia = 10;
-
-    fechafin.anyo = 2004;
-    fechafin.mes = 06;
-    fechafin.dia = 25;
-
-    disponibilidadHabitaciones(fechaini,fechafin);
-    Habitacion habitacion;
-    printf("Elige una habitacion: ");
-    scanf("%i",habitacion.id_habitacion);
 
     crearBD();
     //crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
@@ -146,12 +132,16 @@ void main(){
 
                             mostrarHabitaciones();
                             printf("\nQue tipo de habitacion quieres: ");
+                            int *lista;
+                            lista = disponibilidadHabitaciones((*r).fecha_ini,(*r).fecha_fin);
+                            printf("\nElige una habitacion disponible: ");
+                            int valor = 0;
+                            scanf("%i",&(*r).id_habitacion);
+                            while (lista[(*r).id_habitacion] == 0){
+                                printf("\nElige una habitacion disponible: ");
+                                scanf("%i",&(*r).id_habitacion);
 
-                            char habi;                                fflush(stdin);                                 
-
-                            scanf("%c", &habi);
-                            habi = toupper(habi);
-                            printf("\n%c",habi);
+                            }
                             realizarReserva(r);
 
 
