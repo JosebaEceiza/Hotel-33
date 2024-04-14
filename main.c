@@ -157,8 +157,10 @@ void main(){
                                     correcto = 1;
                                 }
                             }
+
                             printf("\nNumero de Personas: ");
                             scanf("%i", &(*r).numPersona);
+                            excepcionNumeroPersonas(&(*r).numPersona);
 
                             mostrarHabitaciones();
                             printf("\nQue tipo de habitacion quieres: ");

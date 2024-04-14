@@ -191,3 +191,14 @@ void excepcionDiaReserva(int *mes , int *dia){
 
     }
 }
+
+
+
+void excepcionNumeroPersonas(int *num){
+    while(*num >= 5 || *num <= 0){
+        printf("El numero de personas tiene que estar entre 1 y 4. Intentelo de nuevo:");
+        scanf("%i", num);
+        fflush(stdin);
+    }
+
+}
