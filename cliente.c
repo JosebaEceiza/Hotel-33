@@ -91,3 +91,46 @@ int comprobarCliente(char *c){
     return 0;
 
 }
+
+
+void mostrarReservasCliente(char *dni_cliente) {
+    sqlite3 *db;
+    sqlite3_open("base_datos.db", &db);
+
+    // Preparar la sentencia SQL para seleccionar las reservas del cliente
+    sqlite3_stmt *stmt;
+    char *sql = "SELECT * FROM RESERVA_HOTEL WHERE DNI LIKE ?;";
+    int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    if (result != SQLITE_OK) {
+        printf("Error preparando la sentencia (SELECT)\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+
+    // Asignar el valor del parámetro 'dni_cliente' al primer argumento de la sentencia preparada
+    sqlite3_bind_text(stmt, 1, dni_cliente, -1, SQLITE_STATIC);
+
+    // Ejecutar la sentencia
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        // Obtener los valores de las columnas
+        int id_reserva = sqlite3_column_int(stmt, 0);
+        const unsigned char *fecha_ini = sqlite3_column_text(stmt, 1);
+        const unsigned char *fecha_fin = sqlite3_column_text(stmt, 2);
+        const unsigned char *dni = sqlite3_column_text(stmt, 3);
+        int num_personas = sqlite3_column_int(stmt, 4);
+        int id_habitacion = sqlite3_column_int(stmt, 5);
+
+        // Mostrar la información de la reserva
+        printf("\nReserva #%d:", id_reserva);
+        printf("\nFecha de inicio: %s", fecha_ini);
+        printf("\nFecha de fin: %s", fecha_fin);
+        printf("\nDNI del cliente: %s", dni);
+        printf("\nNúmero de personas: %d", num_personas);
+        printf("\nID de la habitación: %d\n", id_habitacion);
+    }
+
+    // Finalizar la sentencia y cerrar la conexión a la base de datos
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+}

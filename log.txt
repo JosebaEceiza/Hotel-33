@@ -4,3 +4,5 @@
 [2024-04-14 20:29:24] El usuario con DNI 72839150J se ha registrado.
 [2024-04-14 20:34:15] El usuario con DNI 72839150J ha iniciado sesión.
 [2024-04-14 20:36:02] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-04-14 20:47:00] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-04-14 20:48:48] El usuario con DNI 72839150J ha iniciado sesión.

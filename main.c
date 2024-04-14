@@ -225,6 +225,13 @@ void main(){
 
                         }
                         else if (ve == '3'){
+                            Cliente *c = malloc(sizeof(Cliente));
+                            printf("\nIndique el DNI: ");
+                            scanf("%s",(*c).DNI);
+                            fflush(stdin);
+                            excepcionDNI((*c).DNI);
+                            mostrarReservasCliente((*c).DNI);
+
                         }
                         else if (ve == '4'){
                             mostrarHabitaciones();
