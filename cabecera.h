@@ -86,5 +86,14 @@ void mostrarHabitaciones();
 
 int* disponibilidadHabitaciones(Fecha fechaini, Fecha fechafin);
 
+void excepionAnyoReserva(int *anyo);
+
+void excepionMesReserva(int *mes);
+
+void excepcionDiaReserva(int *mes , int *dia);
+
+
+
+
 
 #endif
