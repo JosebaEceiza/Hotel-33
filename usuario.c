@@ -8,7 +8,6 @@ int registrarUsuario(Usuario *u){
     sqlite3* db;
     sqlite3_open("base_datos.db", &db);
 
-    //INSERT USUARIO
     sqlite3_stmt *stmt;
 
     char *sql = "INSERT INTO USUARIO VALUES (?,?,?,?);";
@@ -73,7 +72,7 @@ int loggear(Usuario *usuario){
 
         numFilas++;
         if (numFilas > 1) {
-            singleRow = -1; // Indicador de múltiples filas
+            singleRow = -1; 
             return 1;
         }
 
@@ -116,13 +115,10 @@ int informacionUsuario(char *c) {
         return 1;
     }
 
-    // Asignar el valor del parámetro 'c' al primer argumento de la sentencia preparada
     sqlite3_bind_text(stmt, 1, c, -1, SQLITE_STATIC);
 
-    // Ejecutar la sentencia
     result = sqlite3_step(stmt);
     if (result == SQLITE_ROW) {
-        // Mostrar la información del usuario
         const unsigned char *dni = sqlite3_column_text(stmt, 0);
         const unsigned char *nombre = sqlite3_column_text(stmt, 1);
         const unsigned char *apellido = sqlite3_column_text(stmt, 2);
@@ -134,7 +130,6 @@ int informacionUsuario(char *c) {
         printf("\nEste usuario no existe.\n");
     }
 
-    // Finalizar la sentencia y cerrar la conexión a la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
     return 0;

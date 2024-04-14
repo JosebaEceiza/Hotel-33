@@ -11,9 +11,9 @@ int existeBD() {
     archivo = fopen("base_datos.db", "r");
     if (archivo != NULL) {
         fclose(archivo);
-        return 1;  // El archivo existe
+        return 1;  
     } else {
-        return 0;  // El archivo no existe
+        return 0;  
     }
 }
 
