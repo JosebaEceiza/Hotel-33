@@ -9,8 +9,8 @@
 void main(){
 
     crearBD();
-    //crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
-    //crearHabitaciones();   //falta por crear condicion de que si esta creado que no se ejecute
+    crearTipoHabitaciones(); //falta por crear condicion de que si esta creado que no se ejecute
+    crearHabitaciones();   //falta por crear condicion de que si esta creado que no se ejecute
     char ve;
     while (ve != '3'){
         fflush(stdin);

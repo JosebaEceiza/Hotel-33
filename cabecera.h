@@ -64,7 +64,7 @@ int registrarUsuario(Usuario *u);
 
 int loggear(Usuario *usuario);
 
-void anularReserva();
+int anularReserva(char *c);
 
 int calcularOcupacion();
 
