@@ -48,6 +48,10 @@ void main(){
                 int acceso = loggear(usuario);  
 
                 if (acceso == 0){
+                    char mensaje[100];
+                    sprintf(mensaje, "El usuario con DNI %s ha iniciado sesión.", usuario->DNI);
+                    logInicioSesion(mensaje);
+
                     while (acceso == 0){
                         printf("\n1. Realizar reserva");
                         printf("\n2. Anular reserva");
@@ -191,6 +195,10 @@ void main(){
                             free(r);
                             r = NULL;
 
+                            char mensaje[100];
+                            sprintf(mensaje, "Se ha relizado la reserva %i.", (*r).id_reserva_hotel);
+                            logInicioSesion(mensaje);
+
 
                         }
                         else if (ve == '2'){
@@ -199,8 +207,14 @@ void main(){
                             Cliente *c = malloc(sizeof(Cliente));
                             printf("\nIndique el DNI: ");
                             scanf("%s",(*c).DNI);
+                            fflush(stdin);
+                            excepcionDNI((*c).DNI);
                             anularReserva((*c).DNI);
                             fflush(stdin);
+                            char mensaje[100];
+                            sprintf(mensaje, "Se han anulado todas las reservas de %s.", (*c).DNI);
+                            logInicioSesion(mensaje);
+
 
                         }
                         else if (ve == '3'){
@@ -250,6 +264,10 @@ void main(){
             excepcionContrasena((*usuario).contrasena);
 
             registrarUsuario(usuario);
+            
+            char mensaje[100];
+            sprintf(mensaje, "El usuario con DNI %s se ha registrado.", (*usuario).DNI);
+            logInicioSesion(mensaje);
             free(usuario);
             usuario = NULL;
             }

@@ -20,7 +20,7 @@ int realizarReserva(Reserva *r){
 	    return 0;
 	}
     result = sqlite3_step(stmt);
-    int count1 = sqlite3_column_int(stmt, 0) +1;
+    (*r).id_reserva_hotel = sqlite3_column_int(stmt, 0) +1;
 
 
     sqlite3_finalize(stmt);
@@ -45,7 +45,7 @@ int realizarReserva(Reserva *r){
     char *fechaFormateadafin = malloc(11);
 
     sprintf(fechaFormateadafin, "%d-%02d-%02d", (*r).fecha_fin.anyo, (*r).fecha_fin.mes, (*r).fecha_fin.dia);
-    sqlite3_bind_int(stmt1, 1, count1);
+    sqlite3_bind_int(stmt1, 1, (*r).id_reserva_hotel);
     sqlite3_bind_text(stmt1, 2, fechaFormateadainicio, strlen(fechaFormateadainicio), SQLITE_STATIC);
     sqlite3_bind_text(stmt1, 3, fechaFormateadafin, strlen(fechaFormateadafin), SQLITE_STATIC);
     sqlite3_bind_text(stmt1, 4, (*r).DNI, strlen((*r).DNI), SQLITE_STATIC);

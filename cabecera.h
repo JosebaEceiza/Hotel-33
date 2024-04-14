@@ -98,6 +98,8 @@ void excepcionNumeroTelefono(char *str);
 
 void excepcionNumeroTarjeta(char *str);
 
+void logInicioSesion(char *message);
+
 
 
 
