@@ -101,8 +101,13 @@ void main(){
 
                                 printf("\nIndique su telefono: ");
                                 scanf("%s", (*c).telefono);  
+                                fflush(stdin);
+                                excepcionNumeroTelefono((*c).telefono);
+
                                 printf("\nIndique su numero de tarjeta: ");
                                 scanf("%s", (*c).num_tarjeta);  
+                                fflush(stdin);
+                                excepcionNumeroTarjeta((*c).num_tarjeta);
 
                                 printf("\nIndique su anyo de nacimiento: ");
                                 scanf("%i", &(*c).fecha_nac.anyo);  
@@ -161,6 +166,8 @@ void main(){
                             printf("\nNumero de Personas: ");
                             scanf("%i", &(*r).numPersona);
                             fflush(stdin);
+                            excepcionNumeroPersonas(&(*r).numPersona);
+
 
 
                             mostrarHabitaciones();
