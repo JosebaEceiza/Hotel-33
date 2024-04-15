@@ -200,13 +200,13 @@ void main(){
                             fflush(stdin);
 
                             realizarReserva(r);
-
-                            free(r);
-                            r = NULL;
-
                             char mensaje[100];
                             sprintf(mensaje, "Se ha relizado la reserva %i.", (*r).id_reserva_hotel);
                             logInicioSesion(mensaje);
+                            free(r);
+                            r = NULL;
+
+                            
 
 
                         }
