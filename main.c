@@ -70,7 +70,7 @@ void main(){
 
                         if (ve == '1'){
                             Reserva *r = malloc(sizeof(Reserva));
-                            printf("¿Tiene registrado sus datos? (Si es asi pulsa S): ");
+                            printf("Tiene registrado sus datos? (Si es asi pulsa S): ");
                             char registro = getchar();
                             fflush(stdin); 
 
