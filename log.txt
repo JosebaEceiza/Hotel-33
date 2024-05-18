@@ -12,3 +12,10 @@
 [2024-04-15 07:55:09] El usuario con DNI 73275435B ha iniciado sesión.
 [2024-04-15 07:57:30] El usuario con DNI 73275435B ha iniciado sesión.
 [2024-04-15 07:57:43] Se ha relizado la reserva 7.
+[2024-05-18 17:14:21] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-05-18 17:15:10] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-05-18 17:16:51] Se ha relizado la reserva 8.
+[2024-05-18 17:16:58] Se han anulado todas las reservas de 72839150J.
+[2024-05-18 17:18:33] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-05-18 17:21:47] El usuario con DNI 72839150J ha iniciado sesión.
+[2024-05-18 17:22:47] El usuario con DNI 72839150J ha iniciado sesión.

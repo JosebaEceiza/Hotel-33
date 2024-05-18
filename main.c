@@ -76,7 +76,8 @@ void main(){
 
                             if ((registro == 'S') || (registro =='s')){
                                 printf("\nIndique su DNI: ");
-                                scanf("%s", (*r).DNI);  
+                                scanf("%s", (*r).DNI);
+                                excepcionDNI((*r).DNI);
                                 int valor = comprobarCliente((*r).DNI);
                                 while (valor != 0){
                                     printf("El DNI no esta en la base de datos introduzcala de nuevo: ");

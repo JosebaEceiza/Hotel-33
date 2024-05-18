@@ -86,4 +86,3 @@ int anularReserva(char *c){
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
-

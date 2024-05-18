@@ -119,7 +119,7 @@ void mostrarReservasCliente(char *dni_cliente) {
         printf("\nFecha de inicio: %s", fecha_ini);
         printf("\nFecha de fin: %s", fecha_fin);
         printf("\nDNI del cliente: %s", dni);
-        printf("\nNúmero de personas: %d", num_personas);
+        printf("\nNumero de personas: %d", num_personas);
         printf("\nID de la habitación: %d\n", id_habitacion);
     }
 

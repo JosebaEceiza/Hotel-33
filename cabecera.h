@@ -56,9 +56,9 @@ void crearBD();
 
 int registrarCliente(Cliente *cliente);
 
-int comprobarCliente();
+int comprobarCliente(char *c);
 
-int realizarReserva();
+int realizarReserva(Reserva *r);
 
 int registrarUsuario(Usuario *u);
 
